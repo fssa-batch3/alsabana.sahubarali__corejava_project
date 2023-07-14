@@ -86,7 +86,6 @@ class Lion extends Animal {
 
 class Giraffe extends Animal {
 	private int height;
-
 }
 
 public class AnimalSolved{
