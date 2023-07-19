@@ -60,6 +60,7 @@ public class Task {
         taskList.add(new Task("Task 3", "2023-07-18"));
         taskList.add(new Task("Task 1", "2023-07-18"));
         taskList.add(new Task("Task 4", "2023-07-20"));
+        taskList.add(new Task("Task 2", "2023-07-19"));
 
      
         Set<Task> taskSet = new HashSet<>(taskList);
