@@ -1,4 +1,4 @@
-package day07.test;
+package day07.practice;
 
 import static org.junit.Assert.assertEquals;
 

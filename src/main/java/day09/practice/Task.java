@@ -22,6 +22,10 @@ public class Task implements Comparable<Task> {
 		this.deadline = deadline;
 	}
 
+	public Task() {
+
+	}
+
 	@Override
 	public int compareTo(Task o) {
 
@@ -81,7 +85,7 @@ public class Task implements Comparable<Task> {
 		Collections.sort(task);
 
 		for (Task t : task) {
-			System.out.println(" Task Name - "+t.getName()+", Deadline - "+t.getDeadline());
+			System.out.println(" Task Name - " + t.getName() + ", Deadline - " + t.getDeadline());
 		}
 
 	}
