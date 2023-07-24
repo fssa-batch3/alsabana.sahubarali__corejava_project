@@ -5,10 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-/**
- * @author BharathwajSoundarara
- *
- */
 
 public class UserInsertQuery {
 
