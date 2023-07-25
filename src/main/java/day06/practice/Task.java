@@ -3,12 +3,13 @@ package day06.practice;
 public class Task {
         private String name;
         private int priority;
-        
+        private int id;
        
 
-		public  Task(String name, int priority) {
+		public  Task(String name, int priority,int id) {
         	this.name=name;
         	this.priority=priority;
+        	this.id=id;
         	
         }
         
@@ -32,9 +33,19 @@ public class Task {
 		}
 
 
+	public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 	}
+
+	
 
 }

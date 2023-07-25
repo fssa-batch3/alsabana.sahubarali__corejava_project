@@ -7,8 +7,8 @@ public class TaskDetails {
 
 	private List<Task> taskArray = new ArrayList<Task>();
 
-	public void addTask(String name, int priority) {
-		Task task = new Task(name, priority);
+	public void addTask(String name, int priority,int id) {
+		Task task = new Task(name, priority,id);
 		taskArray.add(task);
 
 	}
@@ -22,8 +22,8 @@ public class TaskDetails {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		TaskDetails s = new TaskDetails();
-		s.addTask("HTML", 0);
-		s.addTask("java", 1);
+		s.addTask("HTML", 0,1);
+		s.addTask("java", 1,1);
 		s.printTask();
 
 	}
