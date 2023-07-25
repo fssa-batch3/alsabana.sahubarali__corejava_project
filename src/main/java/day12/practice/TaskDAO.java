@@ -16,19 +16,18 @@ public class TaskDAO {
 	public void createTask(Task task) throws DAOException {
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement stmt = connection
-						.prepareStatement("INSERT INTO task (id,name, priority) VALUES ( ?, ?)")) { // This is the
-																									// try-with-resources
+						.prepareStatement("INSERT INTO task (id,name, priority) VALUES ( ?, ?, ?)")) { // This is the
+																										// try-with-resources
 
 			// Hint: Set the values for the PreparedStatement using task properties
-			stmt.setString(1, task.getName());
-			stmt.setInt(2, task.getPriority());
-			stmt.setInt(3, task.getId());
+			stmt.setInt(1, task.getId());
+			stmt.setString(2, task.getName());
+			stmt.setInt(3, task.getPriority());
 
 			// Hint: Execute the update statement
 			int rows = stmt.executeUpdate();
 			System.out.println("No of rows inserted :" + rows);
-			stmt.close();
-			connection.close();
+
 		} catch (SQLException e) {
 			throw new DAOException("Error in createTask method", e);
 		}
@@ -58,7 +57,7 @@ public class TaskDAO {
 	public void deleteTask(int taskId) throws DAOException {
 
 		try (Connection connection = ConnectionUtil.getConnection();
-				PreparedStatement stmt = connection.prepareStatement("DELETE task WHERE id=?")) {
+				PreparedStatement stmt = connection.prepareStatement("DELETE from task WHERE id=?")) {
 
 			stmt.setInt(1, taskId);
 
@@ -69,7 +68,7 @@ public class TaskDAO {
 			connection.close();
 
 		} catch (SQLException e) {
-			throw new DAOException("Error in createTask method", e);
+			throw new DAOException("Error in deleteTask method", e);
 		}
 		// Hint: Add the try-with-resources for delete query here
 
@@ -102,5 +101,38 @@ public class TaskDAO {
 		}
 
 		return task;
+	}
+
+	public static void main(String[] args) {
+		TaskDAO taskDAO = new TaskDAO();
+
+		Task task1 = new Task("Attend meeting", 5, 12);
+		Task task2 = new Task("Sleeping", 7, 10);
+		try {
+			taskDAO.createTask(task1);
+			taskDAO.createTask(task2);
+
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			taskDAO.deleteTask(12);
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			task1.setName("Sleeping");
+			taskDAO.updateTask(task1);
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private void updateTask(Object setPriority) {
+		// TODO Auto-generated method stub
+		
 	}
 }
