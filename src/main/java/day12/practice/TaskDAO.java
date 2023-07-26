@@ -131,8 +131,5 @@ public class TaskDAO {
 
 	}
 
-	private void updateTask(Object setPriority) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

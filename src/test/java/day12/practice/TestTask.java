@@ -14,9 +14,11 @@ public class TestTask {
 
 		Task task1 = new Task("Attend meeting", 5, 12);
 		Task task2 = new Task("Sleeping", 7, 10);
+		Task task3 = new Task("eat", 4, 32);
 		try {
 			taskDAO.createTask(task1);
 			taskDAO.createTask(task2);
+			taskDAO.createTask(task3);
 
 		} catch (DAOException e) {
 			e.printStackTrace();
