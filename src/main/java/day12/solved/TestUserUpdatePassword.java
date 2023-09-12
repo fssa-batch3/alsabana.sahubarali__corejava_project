@@ -10,8 +10,9 @@ import day11.solved.ResuableTestConnection;
 public class TestUserUpdatePassword {
 		 
 	    public static void main(String[] args) throws Exception {
-	 
+	    
 	        Connection connection = ResuableTestConnection.getConnection();
+	        //Connection is a interface , we use for to connect java and database.
 	 
 	        // Input
 	        String userName = "bharathwaj";

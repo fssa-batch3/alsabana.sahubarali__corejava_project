@@ -47,8 +47,6 @@ public class TaskDAO {
 			// Hint: Execute the update statement
 			int rows = stmt.executeUpdate();
 			System.out.println("No of rows inserted :" + rows);
-			stmt.close();
-			connection.close();
 		} catch (SQLException e) {
 			throw new DAOException("Error in updateTask method", e);
 		}
@@ -83,7 +81,7 @@ public class TaskDAO {
 		List<Task> task = new ArrayList<>();
 
 		try (Connection connection = ConnectionUtil.getConnection();
-				PreparedStatement stmt = connection.prepareStatement("SELECT id, name, pirority FROM task");
+				PreparedStatement stmt = connection.prepareStatement("SELECT id, name, priority FROM task");
 				ResultSet rs = stmt.executeQuery()) {
 
 			// Hint: Iterate over the ResultSet to create Task objects and add them to the
@@ -91,10 +89,13 @@ public class TaskDAO {
 			while (rs.next()) {
 				String name = rs.getString("name");
 				int prio = rs.getInt("priority");
-				RowId id = rs.getRowId("id");
-
-				System.out.println("TaskName:" + name + ", ID:" + id + ", prio:" + prio);
+				int id = rs.getInt("id");
+                task.add( new Task(name,prio,id));
+				//System.out.println("TaskName:" + name + ", ID:" + id + ", prio:" + prio);
+				
 			}
+			
+			System.out.println(task.toString());
 
 		} catch (SQLException e) {
 			throw new DAOException("Error in getAllTasks method", e);
@@ -106,28 +107,35 @@ public class TaskDAO {
 	public static void main(String[] args) {
 		TaskDAO taskDAO = new TaskDAO();
 
-		Task task1 = new Task("Attend meeting", 5, 12);
-		Task task2 = new Task("Sleeping", 7, 10);
+		Task task1 = new Task("class ", 6, 38);
+		Task task2 = new Task("beak", 49, 11);
 		try {
-			taskDAO.createTask(task1);
-			taskDAO.createTask(task2);
+//			taskDAO.createTask(task1);
+//			taskDAO.createTask(task2);
+			List<Task> task = new TaskDAO().getAllTask();
+			
+			for(Task t:task) {
+				System.out.println(t.getId()+" "+t.getName()+" "+t.getPriority());
+			}
+			
+			
 
 		} catch (DAOException e) {
 			e.printStackTrace();
 		}
+//
+//		try {
+//			taskDAO.deleteTask(12);
+//		} catch (DAOException e) {
+//			e.printStackTrace();
+//		}
 
-		try {
-			taskDAO.deleteTask(12);
-		} catch (DAOException e) {
-			e.printStackTrace();
-		}
-
-		try {
-			task1.setName("Sleeping");
-			taskDAO.updateTask(task1);
-		} catch (DAOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			task1.setName("Sleeping");
+//			taskDAO.updateTask(task1);
+//		} catch (DAOException e) {
+//			e.printStackTrace();
+//		}
 
 	}
 
